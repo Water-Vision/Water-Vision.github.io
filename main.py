@@ -1,6 +1,7 @@
 import waterdetect as wd
+from waterdetect import DWWaterDetect
 
-water_mask = wd.DWWaterDetect.run_single(image_folder='D:\Images\Input\Input_Tiete/SENTINEL2A_20190326-132829-354_L2A_T22KGA_C_V2-0',
-                                         temp_folder='D:/temp',
-                                         shape_file='D:/Shp/Area_Tiete.shp'
-                                    )
+water_mask = wd.DWWaterDetect.run_single(image_folder='C:/Users/user/Desktop/Img',
+                                         temp_folder='C:/Temp',
+                                         shape_file='C:/Users/user/Desktop/Shape'
+                                        )
