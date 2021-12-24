@@ -1,18 +1,19 @@
-import matplotlib as plt
-import waterdetect as wd
-import rasterio
+import cv2
 
-config = wd.DWConfig(config_file='WaterDetect.ini')
-config.clustering_bands, config.detect_water_cluster
+destinationFile = 'inp.tif'
+inpuDataset = cv2.imread('inp.tif', cv2.IMREAD_LOAD_GDAL)
 
-b3  = rasterio.open('D:\Images\Input\Input_Tiete\SENTINEL2A_20190326-132829-354_L2A_T22KGA_C_V2-0\SENTINEL2A_20190326-132829-354_L2A_T22KGA_C_V2-0_FRE_B3.tif').read()
-nir = rasterio.open('D:\Images\Input\Input_Tiete\SENTINEL2A_20190326-132829-354_L2A_T22KGA_C_V2-0\SENTINEL2A_20190326-132829-354_L2A_T22KGA_C_V2-0_FRE_B8.tif').read()
-b3.shape, nir.shape
+format = 'JPEG'
 
-bands = {'Green': b3.squeeze()/10000, 'Nir': nir.squeeze()/10000}
-wmask = wd.DWImageClustering(bands=bands, bands_keys=['Nir', 'ndwi'], invalid_mask=None, config=config)
-mask = wmask.run_detect_water()
+inpuDataset = None
+outputDataset = None
 
-plt.imshow(wmask.water_mask==1)
+nycImage = cv2.imread(destinationFile, cv2.IMREAD_LOAD_GDAL & cv2.IMREAD_GRAYSCALE)
 
-plt.imshow(wmask.cluster_matrix)
+th, processedPic = cv2.threshold(nycImage, 65, 255, cv2.THRESH_BINARY)
+
+cv2.imwrite(destinationFile, processedPic)
+cv2.imshow('thresholded', processedPic)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
