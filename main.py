@@ -1,4 +1,4 @@
 from SatelliteReader import SatelliteReader
 
-SatelliteReader.extractWaterData('ori.tif')
-SatelliteReader.extractHouseData('ori.tif')
+SatelliteReader.filteringComparison('ori.tif')
+SatelliteReader.filteringComparison2('ori.tif')
