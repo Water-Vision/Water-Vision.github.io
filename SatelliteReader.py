@@ -41,6 +41,19 @@ class SatelliteReader(ReaderAbstract):
             plt.subplot(2, 2, i + 1), plt.imshow(images[i], 'gray')
             plt.title(titles[i])
             plt.xticks([]), plt.yticks([])
+
+        cv2.imshow('Original', img)
+        cv2.imwrite('Original.tif', img)
+
+        cv2.imshow('Global Thresholding V=127', th1)
+        cv2.imwrite('GlobalThresholding.tif', th1)
+
+        cv2.imshow('AMT', th2)
+        cv2.imwrite('AMT.tif', th2)
+
+        cv2.imshow('AGT', th3)
+        cv2.imwrite('AGT.tif', th3)
+
         plt.show()
 
     def filteringComparison2(filepath):
