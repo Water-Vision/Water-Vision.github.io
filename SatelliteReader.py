@@ -48,11 +48,11 @@ class SatelliteReader(ReaderAbstract):
         cv2.imshow('Global Thresholding V=127', th1)
         cv2.imwrite('GlobalThresholding.tif', th1)
 
-        cv2.imshow('AMT', th2)
-        cv2.imwrite('AMT.tif', th2)
+        cv2.imshow('AdaptiveMeanThresholding', th2)
+        cv2.imwrite('AdapMeanThresh.tif', th2)
 
-        cv2.imshow('AGT', th3)
-        cv2.imwrite('AGT.tif', th3)
+        cv2.imshow('AdaptiveGaussianThresholding', th3)
+        cv2.imwrite('AdapGaussThresh.tif', th3)
 
         plt.show()
 
@@ -69,8 +69,11 @@ class SatelliteReader(ReaderAbstract):
         blur = cv2.GaussianBlur(img, (5, 5), 0)
         ret3, th3 = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
-        cv2.imwrite('newHouse.tif', th3)
+        cv2.imwrite('Otsu.tif', th3)
         cv2.imshow('otsu', th3)
+
+        cv2.imwrite('GaussianFiltered.tif', th3)
+        cv2.imshow('GaussianFiltered', th3)
 
         # plot all the images and their histograms
         images = [img, 0, th1,
